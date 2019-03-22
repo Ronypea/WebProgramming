@@ -24,6 +24,7 @@
 
     <style type="text/css">
         @import url('https://fonts.googleapis.com/css?family=Raleway');
+        @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
         #main {
             background: url(https://www.healthline.com/hlcmsresource/images/AN_images/espresso-ground-coffee-beans-1296x728.jpg) no-repeat center top;
@@ -57,8 +58,17 @@
             letter-spacing: 2px;
         }
 
+        .jumbotron {
+            font-family: "PT+Sans";
+        }
+
         .centered {
             text-align: center;
+        }
+
+        .img {
+            width: 100%;
+            height: 220px;
         }
     </style>
 
@@ -73,9 +83,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" class="navbar-brand">Ronypea's Coffee </a>
+            <a class="navbar-brand" href="#">Ronypea's Coffee </a>
         </div>
-
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#">Главная</a></li>
@@ -102,6 +111,7 @@
     </div>
 </div>
 
+<!-- краткое описание -->
 <div class="jumbotron">
     <div class="container">
         <h2>Кто? Почему? Зачем?</h2>
@@ -115,25 +125,63 @@
             видов: арабику или робусту, колумбийский и вьетнамский кофе, кофе без кофеина и т.д.</p>
     </div>
 </div>
+
+<!-- 3 блока с товарами -->
 <div class="container">
     <div class="row centered">
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
             <h2>Каталог кофе</h2>
+            <img class="img"
+                 src="https://st2.depositphotos.com/1012056/5325/i/950/depositphotos_53257387-stock-photo-coffee-bag.jpg"
+                 alt="">
             <p>Более 50 сотров свежеобжаренного кофе для всех способов приготовления </p>
             <p><a href="#" class="btn btn-default">В каталог</a></p>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
             <h2>Кофейное оборудование</h2>
+            <img class="img"
+                 src="https://images.philips.com/is/image/PhilipsConsumer/HD8654_59-MI1-global-001?$jpglarge$&wid=1250"
+                 alt="">
             <p>Кофемашины, как в лучших кофейнях Вашего города</p>
             <p><a href="#" class="btn btn-default">В каталог</a></p>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
             <h2>Аксессуары для кофе</h2>
+            <img class="img"
+                 src="http://docs2.proimagescdn.ru/mainrek/pages/2786399495e14b4e87a3d6624cbd077e.jpg" alt="">
             <p>Все, что нужно, чтобы приготовить вкусный кофе дома</p>
             <p><a href="#" class="btn btn-default">В каталог</a></p>
         </div>
     </div>
 </div>
+
+<!-- Форма заказа на сайте -->
+<div class="container">
+    <form role="form">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Введите email">
+        </div>
+        <div class="form-group">
+            <label for="telephone">Телефон</label>
+            <input type="telephone" class="form-control" id="telephone" placeholder="Введите телефон">
+            <p class="help-block">В формате +7(***)***-**-**</p>
+        </div>
+        <div class="md-form amber-textarea active-amber-textarea">
+            Для ваших заказов и отзывов:
+            <textarea id="form19" class="md-textarea form-control"
+                      rows="3"> Поделись всем, что у тебя на душе </textarea>
+            <label for="form19"></label>
+        </div>
+        <div class="checkbox">
+            <label for="checkbox">
+                <input type="checkbox" id="checkbox"> Соглашаюсь с политикой конфиденциальности </label>
+        </div>
+        <button type="button" class="btn btn-success">Отправить</button>
+    </form>
+</div>
+
+<!-- Защита прав -->
 <hr>
 <footer>
     <p>&copy; Все права защищены Ronypea 2019</p>
