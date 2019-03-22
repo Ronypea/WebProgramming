@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lab_2</title>
+
+    <!-- адаптация на мобильные телефоны -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- скачивание Bootstrap через удвленный сервер -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Подключаем jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Подключаем Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Raleway');
+
+        #main {
+            background: url(https://www.healthline.com/hlcmsresource/images/AN_images/espresso-ground-coffee-beans-1296x728.jpg) no-repeat center top;
+            background-attachment: local;
+            background-position: center center;
+            margin-top: 10px;
+            padding-top: 20px;
+            min-height: 500px;
+            widtg: 100%;
+            text-align: center;
+            font-family: "Raleway";
+
+            background-size: 100%;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        #main h1 {
+            margin-top: 100px;
+            color: white;
+            font-size: 70px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        #main h2 {
+            color: white;
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        .centered {
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+<!-- создание шапки -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" class="navbar-brand">Ronypea's Coffee </a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#">Главная</a></li>
+                <li><a href="#">Про нас</a></li>
+                <li><a href="#">Товары</a></li>
+                <li><a href="#">Обратная связь</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- создание главной страницы -->
+<div id="main">
+    <div class="container">
+        <div class="row centered">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h1>Ronypea's Coffee</h1>
+                <h2>Истина недоступна тому, кто не приобщился к пенной благодати кофе.</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1> Кофейный магазин </h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-4 col-lg-3" style="background-color: lightblue"> Товар</div>
+        <div class="col-xs-12 col-sm-9 col-md-4 col-lg-3" style="background-color: cornflowerblue"> Описание</div>
+        <div class="col-xs-12 col-sm-9 col-md-4 col-lg-3" style="background-color: cadetblue"> Цена</div>
+    </div>
+</div>
+
+</body>
+</html>
