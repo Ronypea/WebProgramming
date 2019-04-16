@@ -1,7 +1,15 @@
 <?php
 
 // Соединение с базой данных
-$db = mysqli_connect('localhost', 'root', 'root', 'news');
+function createConnection()
+{
+    $mysqli = new mysqli('localhost', 'root', 'root', 'news', 3306);
+    if ($mysqli->connect_errno) {
+        die('Cannot connect to mySQL');
+    }
+    return $mysqli;
+}
+
 
 $out = '';
 $out .= '<form method="POST">';
