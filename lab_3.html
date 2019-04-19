@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Лаб 3</title>
+</head>
+<body>
+
+<script>
+  var CanvasWidth = 800;
+  var CanvasHeight = 600;
+
+  var canvas = document.createElement('canvas');
+  canvas.width = CanvasWidth;
+  canvas.height = CanvasHeight;
+
+  var body = document.getElementsByTagName('body')[0];
+  body.appendChild(canvas);
+
+  var picture = canvas.getContext('2d');
+  picture.strokeRect(0, 0, 400, 300);
+
+  pic1 = new Image();
+  pic1.src = 'https://source.unsplash.com/collection/1147619/400x300';
+  pic1.onload = function () {
+      picture.drawImage(pic1, 400, 0);
+  }
+
+  pic2 = new Image();
+  pic2.src = 'https://source.unsplash.com/collection/1147619/400x300'; 
+  pic2.onload = function () {
+      picture.drawImage(pic2, 0, 300);
+  }
+
+  pic3 = new Image();
+  pic3.src = 'https://source.unsplash.com/collection/1147619/400x300';
+  pic3.onload = function () {
+      picture.drawImage(pic3, 0, 0);
+  }
+
+  pic4 = new Image();
+  pic4.src = 'https://source.unsplash.com/collection/1147619/400x300';
+  pic4.onload = function () {
+      picture.drawImage(pic4, 400, 300);
+  }
+
+</script>
+
+</body>
+</html>
