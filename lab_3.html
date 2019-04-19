@@ -7,42 +7,43 @@
 <body>
 
 <script>
-  var CanvasWidth = 800;
-  var CanvasHeight = 600;
+    var CanvasWidth = 800;
+    var CanvasHeight = 600;
+    var ImageWidth = 400;
+    var ImageHeight = 300;
 
-  var canvas = document.createElement('canvas');
-  canvas.width = CanvasWidth;
-  canvas.height = CanvasHeight;
+    var canvas = document.createElement('canvas');
+    canvas.width = CanvasWidth;
+    canvas.height = CanvasHeight;
 
-  var body = document.getElementsByTagName('body')[0];
-  body.appendChild(canvas);
+    var body = document.getElementsByTagName('body')[0];
+    body.appendChild(canvas);
 
-  var picture = canvas.getContext('2d');
-  picture.strokeRect(0, 0, 400, 300);
+    var picture = canvas.getContext('2d');
 
-  pic1 = new Image();
-  pic1.src = 'https://source.unsplash.com/collection/1147619/400x300';
-  pic1.onload = function () {
-      picture.drawImage(pic1, 400, 0);
-  }
+    var ImgUrl1 = "https://source.unsplash.com/collection/1147619/" + ImageWidth + "x" + ImageHeight;
+    var ImgUrl2 = "https://source.unsplash.com/collection/1147624/" + ImageWidth + "x" + ImageHeight;
+    var ImgUrl3 = "https://source.unsplash.com/collection/1147628/" + ImageWidth + "x" + ImageHeight;
+    var ImgUrl4 = "https://source.unsplash.com/collection/462839/" + ImageWidth + "x" + ImageHeight;
 
-  pic2 = new Image();
-  pic2.src = 'https://source.unsplash.com/collection/1147619/400x300'; 
-  pic2.onload = function () {
-      picture.drawImage(pic2, 0, 300);
-  }
+    var imageSources = [ImgUrl1, ImgUrl2, ImgUrl3, ImgUrl4];
+    var images = [];
 
-  pic3 = new Image();
-  pic3.src = 'https://source.unsplash.com/collection/1147619/400x300';
-  pic3.onload = function () {
-      picture.drawImage(pic3, 0, 0);
-  }
+    for (var i = 0; i < 4; i++) {
+        images[i] = new Image();
+        images[i].src = imageSources[i];
+    }
 
-  pic4 = new Image();
-  pic4.src = 'https://source.unsplash.com/collection/1147619/400x300';
-  pic4.onload = function () {
-      picture.drawImage(pic4, 400, 300);
-  }
+    var loadedCounter = 0;
+    images[0].onload = images[1].onload = images[2].onload = images[3].onload = function () {
+        loadedCounter++;
+        if (loadedCounter == 4) {
+            picture.drawImage(images[0], 0, 0);
+            picture.drawImage(images[1], 0, ImageHeight);
+            picture.drawImage(images[2], ImageWidth, 0);
+            picture.drawImage(images[3], ImageWidth, ImageHeight);
+        }
+    }
 
 </script>
 
