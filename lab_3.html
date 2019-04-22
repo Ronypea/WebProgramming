@@ -12,14 +12,19 @@
     var ImageWidth = 400;
     var ImageHeight = 300;
 
+    var fontSize = 30, padding = 10;
+
     var canvas = document.createElement('canvas');
     canvas.width = CanvasWidth;
     canvas.height = CanvasHeight;
+
 
     var body = document.getElementsByTagName('body')[0];
     body.appendChild(canvas);
 
     var picture = canvas.getContext('2d');
+    picture.textBaseline = "center";
+    picture.font = "bold " + fontSize + "px Arial, sans-serif";
 
     var ImgUrl1 = "https://source.unsplash.com/collection/1147619/" + ImageWidth + "x" + ImageHeight;
     var ImgUrl2 = "https://source.unsplash.com/collection/1147624/" + ImageWidth + "x" + ImageHeight;
@@ -34,7 +39,7 @@
         images[i].src = imageSources[i];
     }
 
-    function DrawBackground() {
+    function DrawBackground(callback) {
         var loadedCounter = 0;
         images[0].onload = images[1].onload = images[2].onload = images[3].onload = function () {
             loadedCounter++;
@@ -43,36 +48,55 @@
                 picture.drawImage(images[1], 0, ImageHeight);
                 picture.drawImage(images[2], ImageWidth, 0);
                 picture.drawImage(images[3], ImageWidth, ImageHeight);
+                callback();
             }
         }
     }
 
+
     function GetText() {
-        var TextUrl = 'https://cors-anywhere.herokuapp.com/http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=ru';
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    var quote = xhr.responseText;
-                    var Text = quote.split('\"');
-                    return Text[3];
+        DrawBackground(function () {
+            var TextUrl = 'https://cors-anywhere.herokuapp.com/http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=ru';
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        var quote = xhr.responseText;
+                        var text = quote.split('\"');
+                        quote = text[3].split(' ');
+                        var quoteStrings = [];
+                        var pointer = 0;
+                        for (var i = 0; i < quote.length; i++) {
+                            if (picture.measureText(quote.slice(pointer, i + 1).join(" ")).width >= CanvasWidth - 2 * padding) {
+                                quoteStrings.push(quote.slice(pointer, i).join(" "));
+                                pointer = i;
+                            }
+                        }
+                        quoteStrings.push(quote.slice(pointer, quote.length).join(" "));
+                        console.log(quoteStrings);
+                        for (i = 0; i < quoteStrings.length; i++) {
+                            picture.fillText(quoteStrings[i],
+                                (CanvasWidth - 2 * padding - picture.measureText(quoteStrings[i]).width) / 2 + 10,
+                                (CanvasHeight - 2 * padding - fontSize * quoteStrings.length) / 2 + fontSize * (i + 1.2));
+                        }
+                    } else
+                        throw new Error("Request failed");
                 }
-                else throw new Error("Request failed");
-            }
-        };
-        xhr.open("GET", TextUrl, true);
-        xhr.send();
+            };
+            xhr.open("GET", TextUrl, true);
+            xhr.send();
+        });
+
+        var resultImage = canvas.toDataURL("image/jpeg");
+        var link = document.createElement("a");
+        link.href = resultImage;
+        link.download = "example.jpg";
+        link.innerHTML = "download";
+        body.appendChild(link);
     }
 
-    function DrawPicture() {
-        var quoteText = GetText();
-        document.write(quoteText);
+    GetText();
 
-    }
-
-
-    DrawBackground();
-    DrawPicture();
 
 </script>
 </body>
