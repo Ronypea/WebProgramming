@@ -5,8 +5,8 @@
     <title>Лаб 3</title>
 </head>
 <body>
-
 <script>
+
     var CanvasWidth = 800;
     var CanvasHeight = 600;
     var ImageWidth = 400;
@@ -34,18 +34,46 @@
         images[i].src = imageSources[i];
     }
 
-    var loadedCounter = 0;
-    images[0].onload = images[1].onload = images[2].onload = images[3].onload = function () {
-        loadedCounter++;
-        if (loadedCounter == 4) {
-            picture.drawImage(images[0], 0, 0);
-            picture.drawImage(images[1], 0, ImageHeight);
-            picture.drawImage(images[2], ImageWidth, 0);
-            picture.drawImage(images[3], ImageWidth, ImageHeight);
+    function DrawBackground() {
+        var loadedCounter = 0;
+        images[0].onload = images[1].onload = images[2].onload = images[3].onload = function () {
+            loadedCounter++;
+            if (loadedCounter == 4) {
+                picture.drawImage(images[0], 0, 0);
+                picture.drawImage(images[1], 0, ImageHeight);
+                picture.drawImage(images[2], ImageWidth, 0);
+                picture.drawImage(images[3], ImageWidth, ImageHeight);
+            }
         }
     }
 
-</script>
+    function GetText() {
+        var TextUrl = 'https://cors-anywhere.herokuapp.com/http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=ru';
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    var quote = xhr.responseText;
+                    var Text = quote.split('\"');
+                    return Text[3];
+                }
+                else throw new Error("Request failed");
+            }
+        };
+        xhr.open("GET", TextUrl, true);
+        xhr.send();
+    }
 
+    function DrawPicture() {
+        var quoteText = GetText();
+        document.write(quoteText);
+
+    }
+
+
+    DrawBackground();
+    DrawPicture();
+
+</script>
 </body>
 </html>
