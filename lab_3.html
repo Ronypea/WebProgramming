@@ -37,6 +37,7 @@
     for (var i = 0; i < 4; i++) {
         images[i] = new Image();
         images[i].src = imageSources[i];
+        images[i].setAttribute('crossOrigin', 'anonymous');
     }
 
     function DrawBackground(callback) {
@@ -74,11 +75,21 @@
                         }
                         quoteStrings.push(quote.slice(pointer, quote.length).join(" "));
                         console.log(quoteStrings);
+                        var point = 0;
                         for (i = 0; i < quoteStrings.length; i++) {
                             picture.fillText(quoteStrings[i],
                                 (CanvasWidth - 2 * padding - picture.measureText(quoteStrings[i]).width) / 2 + 10,
                                 (CanvasHeight - 2 * padding - fontSize * quoteStrings.length) / 2 + fontSize * (i + 1.2));
+                            point += 1;
                         }
+
+                        var resultImage = canvas.toDataURL("image/jpeg");
+                        var link = document.createElement("a");
+                        link.href = resultImage;
+                        link.download = "example.jpg";
+                        link.innerHTML = "download";
+                        body.appendChild(link);
+
                     } else
                         throw new Error("Request failed");
                 }
@@ -86,13 +97,6 @@
             xhr.open("GET", TextUrl, true);
             xhr.send();
         });
-
-        var resultImage = canvas.toDataURL("image/jpeg");
-        var link = document.createElement("a");
-        link.href = resultImage;
-        link.download = "example.jpg";
-        link.innerHTML = "download";
-        body.appendChild(link);
     }
 
     GetText();
